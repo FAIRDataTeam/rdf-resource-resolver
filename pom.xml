@@ -264,18 +264,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <!-- override groupId property if GROUP_ID environment variable is found -->
-            <activation>
-                <property>
-                    <name>env.GROUP_ID</name>
-                </property>
-            </activation>
-            <properties>
-                <groupId>${env.GROUP_ID}</groupId>
-            </properties>
-        </profile>
-    </profiles>
 </project>
