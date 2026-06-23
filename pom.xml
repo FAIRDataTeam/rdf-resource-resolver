@@ -84,14 +84,14 @@
         <!-- compile dependency version management -->
         <slf4j.version>1.7.30</slf4j.version>
         <rdf4j.version>3.7.0</rdf4j.version>
-        <flatten.version>1.6.0</flatten.version>
+        <flatten.version>1.7.3</flatten.version>
         <!-- provided dependency version management -->
-        <spotbugs.version>4.2.3</spotbugs.version>
+        <spotbugs.version>4.10.2</spotbugs.version>
         <!-- test dependency version management -->
-        <groovy.version>3.0.8</groovy.version>
-        <spock.version>2.0-groovy-3.0</spock.version>
+        <groovy.version>3.0.25</groovy.version>
+        <spock.version>2.4-groovy-3.0</spock.version>
         <gmavenplus.version>1.12.1</gmavenplus.version>
-        <surefire.version>3.0.0-M5</surefire.version>
+        <surefire.version>3.6.0-M1</surefire.version>
     </properties>
 
     <dependencyManagement>
@@ -206,7 +206,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.6.0</version>
+                <version>0.11.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
@@ -218,7 +218,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.2.7</version>
+                <version>3.2.8</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -239,7 +239,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.4.0</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -252,7 +252,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.12.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
