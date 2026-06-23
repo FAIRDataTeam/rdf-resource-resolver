@@ -34,6 +34,7 @@
     </parent>
 
     <artifactId>rdf-resource-resolver-api</artifactId>
+    <name>rdf-resource-resolver-api</name>
 
     <dependencies>
         <!-- compile -->
