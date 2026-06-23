@@ -1,13 +1,21 @@
 name: Maven CI
 
 on:
-  - push
-  - pull_request
-  # enable manual trigger
-  - workflow_dispatch
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     uses: FAIRDataTeam/github-workflows/.github/workflows/maven-verify.yml@v3
     with:
-      mvn_options: 'tidy:check com.mycila:license-maven-plugin:check com.github.spotbugs:spotbugs-maven-plugin:check'
+      java-version: 21
+      mvn-options: '-Dgpg.skip tidy:check com.mycila:license-maven-plugin:check com.github.spotbugs:spotbugs-maven-plugin:check'
+      db-type: "mongodb"
+      db-version: 8
