@@ -28,13 +28,15 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-import org.apache.http.HttpHeaders;
 import org.eclipse.rdf4j.rio.RDFFormat;
 
 /**
  * Resolver strategy based on matching the file extension in the URL context path.
  */
 public class PathExtensionStrategy extends AbstractResolverStrategy {
+
+    private final static String HTTP_HEADER_LOCATION = "Location";
+
     @Override
     protected HttpRequest configureRequest(String iri) {
         return HttpRequest.newBuilder()
@@ -45,7 +47,7 @@ public class PathExtensionStrategy extends AbstractResolverStrategy {
     @Override
     protected Optional<RDFFormat> resolveFormat(HttpResponse<InputStream> response) {
         var path = response.headers()
-                .firstValue(HttpHeaders.LOCATION)
+                .firstValue(HTTP_HEADER_LOCATION)
                 .map(URI::create)
                 .orElseGet(response::uri)
                 .getPath();

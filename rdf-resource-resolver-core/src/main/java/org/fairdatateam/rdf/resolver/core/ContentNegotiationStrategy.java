@@ -28,7 +28,6 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-import org.apache.http.HttpHeaders;
 import org.eclipse.rdf4j.rio.RDFFormat;
 
 /**
@@ -37,18 +36,23 @@ import org.eclipse.rdf4j.rio.RDFFormat;
  * header will be checked against the available {@link RDFFormat}s for matching values.
  */
 public class ContentNegotiationStrategy extends AbstractResolverStrategy {
+
+    private final static String HTTP_HEADER_ACCEPT = "Accept";
+
+    private final static String HTTP_HEADER_CONTENT_TYPE = "Content-Type";
+
     @Override
     protected HttpRequest configureRequest(String iri) {
         return HttpRequest.newBuilder()
                 .uri(URI.create(iri))
-                .header(HttpHeaders.ACCEPT, ACCEPT_PARAMS)
+                .header(HTTP_HEADER_ACCEPT, ACCEPT_PARAMS)
                 .build();
     }
 
     @Override
     protected Optional<RDFFormat> resolveFormat(HttpResponse<InputStream> response) {
         return response.headers()
-                .firstValue(HttpHeaders.CONTENT_TYPE)
+                .firstValue(HTTP_HEADER_CONTENT_TYPE)
                 .flatMap(format -> RDFFormat.matchMIMEType(format, FORMATS));
     }
 }
